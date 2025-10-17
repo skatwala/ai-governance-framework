@@ -1,0 +1,15 @@
+﻿__pycache__/
+*.py[cod]
+.venv/
+env/
+venv/
+~$*
+*.tmp
+*.bak
+*.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.zip
+*.tar
+*.gz

@@ -1,0 +1,7 @@
+﻿[project]
+name = "ai-governance-framework"
+version = "0.1.0"
+description = "Public sample repository for enterprise AI governance artifacts"
+authors = [{ name = "Saptarshi Katwala", email = "skatwala@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.10"
