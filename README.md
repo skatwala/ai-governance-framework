@@ -2,7 +2,7 @@
 
 > **Public Sample Repository – non-confidential templates for enterprise AI governance.**
 
-**Director-level governance and financial oversight framework** for responsible AI adoption across regulated industries.  
+**Enterprise-level governance and financial oversight framework** for responsible AI adoption across regulated industries.  
 This repository complements the technical layers of [trustgate-evals](https://github.com/skatwala/trustgate-evals), [trustgate-fastapi](https://github.com/skatwala/trustgate-fastapi), and [compliance-ai-reference-arch](https://github.com/skatwala/compliance-ai-reference-arch).
 
 It demonstrates how AI systems can be deployed **with traceability, accountability, and fiscal discipline** — the foundations of enterprise trust.
