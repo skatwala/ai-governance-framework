@@ -1,0 +1,9 @@
+title: AI Governance Framework
+description: Practical, auditable policy templates for compliant AI systems
+theme: jekyll-theme-cayman
+markdown: GFM
+exclude:
+  - "*.zip"
+  - "*.xlsx"
+  - "*.csv"
+  - "pyproject.toml"

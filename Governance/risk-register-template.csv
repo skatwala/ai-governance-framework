@@ -1,0 +1,3 @@
+Risk ID,Title,Description,Category,Likelihood (1-5),Impact (1-5),Inherent Risk Score,Controls / Mitigations,Owner,Target Date,Status,Residual Likelihood (1-5),Residual Impact (1-5),Residual Risk Score,Notes
+AI-001,PII Exposure in Logs,User PII may be logged by LLM prompts/responses,Privacy,3,4,12,Masking function; redact logs; retention=30d,Data Platform Lead,2025-11-30,Open,2,2,4,Pilot in sandbox
+AI-002,Prompt Injection,External inputs manipulate model to exfiltrate secrets,Security,4,5,20,Input filtering; output allowlist; secrets vaulted; egress denylist,AppSec Lead,2025-12-15,Open,2,3,6,Blue team tests in Q4
