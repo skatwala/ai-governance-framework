@@ -1,61 +1,65 @@
-﻿# 🧭 AI Governance Framework
+﻿# 🧭 AI Governance Framework — Executive Overview
 
-> **Public Sample Repository – non-confidential templates for enterprise AI governance.**
-
-**Enterprise-level governance and financial oversight framework** for responsible AI adoption across regulated industries.  
-This repository complements the technical layers of [trustgate-evals](https://github.com/skatwala/trustgate-evals), [trustgate-fastapi](https://github.com/skatwala/trustgate-fastapi), and [compliance-ai-reference-arch](https://github.com/skatwala/compliance-ai-reference-arch).
-
-It demonstrates how AI systems can be deployed **with traceability, accountability, and fiscal discipline** — the foundations of enterprise trust.
+**Purpose:**  
+A practical, auditable governance layer for safe enterprise AI adoption — ensuring every model, prompt, and decision is traceable, compliant, and cost-controlled.
 
 ---
 
-## 📂 Structure
-| Folder | Description |
-|--------|--------------|
-| **Governance/** | Regulation trackers, risk registers, and operating model templates |
-| **Finance/** | Budget playbooks, architecture cost models |
-| **Decisions/** | Executive memos and decision logs for AI oversight |
-| **prompt_templates/** | Safety, traceability, cost, and security blueprints for LLM prompt governance |
+## 🧩 What’s Inside
+
+| Layer | Contents | Purpose |
+|-------|-----------|----------|
+| **Governance** | Risk register, scorecard, operating model | Define accountability & KPIs |
+| **Finance** | Budget playbooks, architecture cost models | Track fiscal discipline |
+| **Decisions** | ADRs & regulation tracker | Document key trade-offs |
+| **Prompt Governance** | Safety, traceability, cost, security templates | Enforce compliance-by-design |
 
 ---
 
-## 🧩 Prompt Governance Patterns
-Safe, traceable, and cost-aware **prompt templates** designed for regulated AI deployments (healthcare, finance, and HR).  
-Each template enforces *compliance-by-design* principles — safety guardrails, full traceability, cost transparency, and embedded security controls.
+## 🪜 Quick Adoption Steps
 
-| File | Purpose |
-|------|----------|
-| [`safety-guardrails.md`](./prompt_templates/safety-guardrails.md) | Defines red-lines for responsible responses (e.g., “do not diagnose,” “defer to professional”). |
-| [`traceability.md`](./prompt_templates/traceability.md) | Establishes trace IDs, model provenance, and logging patterns for audit readiness. |
-| [`cost-optimization.md`](./prompt_templates/cost-optimization.md) | Provides a tiered model-switching and caching framework to manage LLM costs. |
-| [`security-controls.md`](./prompt_templates/security-controls.md) | Implements prompt-level defenses against injection, PII leakage, and misuse. |
-
-> **Usage:**  
-> Integrate these templates into your LLM orchestration layer or prompt management system.  
-> Each file serves as a *governance artifact* that can be reviewed by compliance, security, or audit teams.  
-> All prompts should reference a unique `trace_id` and adhere to these controls for safe, consistent deployment.
+1. Copy `Governance/risk-register-template.*` → log your top 10 AI risks.  
+2. Add `trace_id` logging from `prompt_templates/traceability.md` in your LLM gateway.  
+3. Embed guardrails from `safety-guardrails.md` to block unsafe content.  
+4. Track AI spend monthly via `Finance/ai-budget-tracker.md`.  
+5. Record vendor choices & rationale in `Decisions/adr-001-llm-vendor-selection.md`.
 
 ---
 
-## 🪜 Visual Overview
+## 🧭 Governance KPIs
 
-```mermaid
-flowchart TD
-    A[🧭 AI Governance Framework] --> B[📑 Governance]
-    A --> C[💰 Finance]
-    A --> D[🧠 Decisions]
-    A --> E[🧩 Prompt Templates]
-    E --> E1[Safety Guardrails]
-    E --> E2[Traceability]
-    E --> E3[Cost Optimization]
-    E --> E4[Security Controls]
-```
+| Metric | Target | Current | Trend |
+|---------|---------|----------|--------|
+| Risk Coverage | ≥ 80 % | 71 % | ↑ |
+| Residual Risk | ≤ 6 | 5.2 | ↔ |
+| Compliance SLA | ≥ 90 % | 88 % | ↑ |
+| Budget Variance | ± 10 % | +6 % | ↓ |
+| Incident MTTR | < 24 h | 20 h | ↑ |
 
 ---
 
-## 📫 Connect
-- [LinkedIn](https://www.linkedin.com/in/saptarshi-katwala/)
-- 📧 skatwala@gmail.com
+## 🌍 Alignment
 
-> “AI systems don’t fail on accuracy alone — they fail on trust.  
-> This framework builds the **trust layer** that lets enterprises scale safely.”
+- **NIST AI RMF:** Map / Measure / Manage / Govern  
+- **EU AI Act:** Annex IV (Technical Documentation), Article 9 (Risk Management)  
+- **ISO 23894:** AI Risk Management Framework  
+
+> *“AI systems don’t fail on accuracy — they fail on trust.”*  
+> This framework builds the **trust layer** for responsible scaling.
+
+**Related Pages:** [Executive Overview](docs/README.md) | [Standards Mapping](Governance/standards-mapping.md) | [Case Study](CASE-STUDY.md)
+
+**Supporting Docs:** [Changelog](CHANGELOG.md) | [Security Policy](SECURITY.md)
+
+## 📂 Download Center
+
+| File | Type | Link |
+|------|------|------|
+| Risk Register Template | Excel | [Download](./Governance/risk-register-template.xlsx) |
+| AI Budget Tracker | Excel | [Download](./Finance/Budget-Playbook.xlsx) |
+| Operating Model Deck | PowerPoint | [Download](./Governance/Operating-Model.pptx) |
+
+> Tip: these files open directly in Office Online if you’re logged in to Microsoft 365.
+
+
+_Last updated: {{ site.time | date: "%Y-%m-%d" }}_

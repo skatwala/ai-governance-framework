@@ -6,4 +6,8 @@ AI budget management and financial control templates.
 |------|--------------|
 | [ai-budget-tracker.md](ai-budget-tracker.md) | Budget tracker & variance policy |
 
+### 📄 Downloads
+- [AI Budget Tracker (XLSX)](Budget-Playbook.xlsx)
+
+
 ⬅️ [Back to Home](/ai-governance-framework/)

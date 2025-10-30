@@ -4,6 +4,4 @@ theme: jekyll-theme-cayman
 markdown: GFM
 exclude:
   - "*.zip"
-  - "*.xlsx"
-  - "*.csv"
   - "pyproject.toml"
