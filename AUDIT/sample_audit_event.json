@@ -1,0 +1,55 @@
+{
+  "event_id": "c5b41ca4-2b32-4c58-b57b-e770adf0a998",
+  "timestamp": "2025-01-10T12:34:56Z",
+  "framework_version": "1.0.0",
+  "environment": "prod",
+
+  "model_id": "customer-intent-llm",
+  "model_version": "v1.3.2",
+  "use_case_id": "contact-center-intent",
+
+  "policy_set_id": "ai-governance-default",
+  "policy_version": "1.0.0",
+
+  "checks": [
+    {
+      "check_id": "fairness.dp_diff",
+      "policy_name": "Demographic Parity",
+      "policy_version": "1.0.0",
+      "metric_name": "demographic_parity_difference",
+      "metric_value": 0.06,
+      "threshold": 0.10,
+      "status": "PASS",
+      "severity": "low",
+      "details": "DP diff within allowed threshold."
+    },
+    {
+      "check_id": "drift.psi",
+      "policy_name": "Population Stability Index",
+      "policy_version": "1.0.0",
+      "metric_name": "psi",
+      "metric_value": 0.25,
+      "threshold": 0.20,
+      "status": "FAIL",
+      "severity": "high",
+      "details": "PSI drift above maximum allowed. Requires escalation."
+    }
+  ],
+
+  "request_context": {
+    "trace_id": "8f12b9b7e1ba4cb0b84b8fcfad913bc1",
+    "session_id": "48e82e7c9",
+    "user_id_hashed": "hashed-user-123",
+    "region": "US"
+  },
+
+  "cost": {
+    "currency": "USD",
+    "prompt_tokens": 120,
+    "completion_tokens": 80,
+    "total_tokens": 200,
+    "estimated_cost": 0.0036
+  },
+
+  "tags": ["drift", "fairness", "llm-eval", "high-risk"]
+}

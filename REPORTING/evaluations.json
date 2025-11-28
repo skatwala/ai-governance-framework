@@ -1,0 +1,43 @@
+{
+  "model_id": "customer-intent-llm",
+  "model_version": "v1.3.2",
+  "owner": "AI Platform Team",
+  "use_case": "Contact center intent classification",
+  "environment": "prod",
+  "last_evaluated": "2025-01-10T12:34:56Z",
+
+  "data": {
+    "train_size": 120000,
+    "eval_size": 8000,
+    "sensitive_attributes": ["gender", "age_band", "region"]
+  },
+
+  "metrics": {
+    "accuracy": 0.91,
+    "f1_macro": 0.88,
+    "drift_psi": 0.12
+  },
+
+  "fairness": {
+    "demographic_parity_difference": 0.06,
+    "equal_opportunity_difference": 0.04
+  },
+
+  "risks": [
+    "Higher error rate for age_band=18-25",
+    "Moderately elevated drift in region=APAC"
+  ],
+
+  "mitigations": [
+    "Added re-weighted loss for minority groups",
+    "Quarterly fairness re-training schedule"
+  ],
+
+  "policy_summary": {
+    "policy_set_id": "ai-governance-default",
+    "policy_version": "1.0.0",
+    "drift_status": "PASS",
+    "fairness_status": "FLAG",
+    "toxicity_status": "PASS"
+  }
+}

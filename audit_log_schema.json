@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIGovernanceAuditEvent",
+  "description": "Schema for AI governance audit events emitted by the framework.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Globally unique identifier for this audit event (UUID)."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time at which the check was evaluated (UTC ISO 8601)."
+    },
+    "framework_version": {
+      "type": "string",
+      "description": "Version of the AI governance framework emitting this event."
+    },
+    "environment": {
+      "type": "string",
+      "description": "Environment in which the check ran (e.g., prod, nonprod)."
+    },
+    "model_id": {
+      "type": "string",
+      "description": "Logical identifier of the model or LLM endpoint."
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Semantic or hash version of the model."
+    },
+    "use_case_id": {
+      "type": "string",
+      "description": "Business use-case identifier (e.g., contact-center-intent)."
+    },
+    "policy_set_id": {
+      "type": "string",
+      "description": "Identifier of the active policy set (e.g., ai-governance-default)."
+    },
+    "policy_version": {
+      "type": "string",
+      "description": "Version of the policy set used for this evaluation."
+    },
+    "checks": {
+      "type": "array",
+      "description": "Individual policy checks applied for this event.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "policy_name": {
+            "type": "string"
+          },
+          "policy_version": {
+            "type": "string"
+          },
+          "metric_name": {
+            "type": "string"
+          },
+          "metric_value": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "threshold": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "FLAG"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "details": {
+            "type": "string",
+            "description": "Optional human-readable explanation."
+          }
+        },
+        "required": [
+          "policy_name",
+          "metric_name",
+          "status"
+        ]
+      }
+    },
+    "request_context": {
+      "type": "object",
+      "description": "Traceability and limited, privacy-safe request metadata.",
+      "properties": {
+        "trace_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "user_id_hashed": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "description": "Optional cost information for this request.",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        },
+        "prompt_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "completion_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "total_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "estimated_cost": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Arbitrary tags for search and filtering."
+    }
+  },
+  "required": [
+    "event_id",
+    "timestamp",
+    "framework_version",
+    "environment",
+    "model_id",
+    "model_version",
+    "use_case_id",
+    "policy_set_id",
+    "policy_version",
+    "checks"
+  ]
+}

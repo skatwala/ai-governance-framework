@@ -1,0 +1,99 @@
+# Example AI Governance Policy Configuration
+# This file is owned by Compliance + Architecture.
+# Engineers should treat it as configuration, not code.
+
+metadata:
+  policy_set_id: "ai-governance-default"
+  version: "1.0.0"
+  owner_team: "AI Governance Council"
+  last_updated: "2025-01-01"
+  contact_email: "ai-governance@example.com"
+
+environments:
+  - name: "prod"
+    description: "Customer-facing production systems"
+  - name: "nonprod"
+    description: "Staging / UAT / experimentation"
+
+models:
+  # Policies can be applied per model or use-case.
+  - model_id: "customer-intent-llm"
+    use_case: "Contact center intent classification"
+    environment: "prod"
+    risk_level: "high"
+
+    policies:
+      drift:
+        enabled: true
+        window_size_days: 7
+        max_population_stability_index: 0.2
+        max_kl_divergence: 0.1
+        action_on_violation: "freeze_and_escalate"  # options: log_only, require_approval, freeze_and_escalate
+
+      fairness:
+        enabled: true
+        sensitive_attributes:
+          - "gender"
+          - "age_band"
+          - "region"
+        min_group_size: 100
+        metrics:
+          demographic_parity_difference:
+            max_abs_diff: 0.10
+          equal_opportunity_difference:
+            max_abs_diff: 0.10
+        action_on_violation: "require_approval"
+
+      toxicity:
+        enabled: true
+        provider_metric: "toxicity_score"
+        max_toxicity_score: 0.20
+        block_on_violation: true
+
+      hallucination:
+        enabled: true
+        max_hallucination_rate: 0.05   # fraction of audited samples
+        sample_size_per_evaluation: 100
+        action_on_violation: "require_approval"
+
+      cost:
+        enabled: true
+        monthly_budget_usd: 100000
+        alert_thresholds_pct: [50, 80, 100, 120]
+        block_above_pct: 120
+
+      logging:
+        audit_log_retention_days: 365
+        pii_handling: "pseudonymised"   # options: raw, pseudonymised, anonymised
+        include_prompt_bodies: false
+        include_model_outputs: true
+
+      approvals:
+        high_risk_use_cases_require_manual_approval: true
+        approver_roles:
+          - "Head of Compliance"
+          - "AI Product Owner"
+
+  - model_id: "document-summarizer-llm"
+    use_case: "Internal document summarization"
+    environment: "nonprod"
+    risk_level: "medium"
+
+    policies:
+      drift:
+        enabled: false
+      fairness:
+        enabled: false
+      toxicity:
+        enabled: true
+        max_toxicity_score: 0.35
+      cost:
+        enabled: true
+        monthly_budget_usd: 10000
+        alert_thresholds_pct: [75, 100, 125]
+        block_above_pct: 150
+      logging:
+        audit_log_retention_days: 90
+        pii_handling: "anonymised"
+        include_prompt_bodies: false
+        include_model_outputs: false

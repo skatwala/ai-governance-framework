@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIGovernancePolicySchema",
+  "description": "Schema for validating policies.yaml used by the AI Governance Framework.",
+  "type": "object",
+
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "policy_set_id": { "type": "string" },
+        "version": { "type": "string" },
+        "owner_team": { "type": "string" },
+        "last_updated": { "type": "string" }
+      },
+      "required": ["policy_set_id", "version", "owner_team"]
+    },
+
+    "environments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["name"]
+      }
+    },
+
+    "models": {
+      "type": "array",
+      "description": "Policies grouped per model/use-case.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "model_id": { "type": "string" },
+          "use_case": { "type": "string" },
+          "environment": { "type": "string" },
+          "risk_level": { "type": "string", "enum": ["low", "medium", "high"] },
+
+          "policies": {
+            "type": "object",
+            "properties": {
+
+              "drift": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "window_size_days": { "type": "integer" },
+                  "max_population_stability_index": { "type": "number" },
+                  "max_kl_divergence": { "type": "number" },
+                  "action_on_violation": { "type": "string" }
+                }
+              },
+
+              "fairness": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "sensitive_attributes": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "min_group_size": { "type": "integer" },
+                  "metrics": { "type": "object" },
+                  "action_on_violation": { "type": "string" }
+                }
+              },
+
+              "toxicity": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "provider_metric": { "type": "string" },
+                  "max_toxicity_score": { "type": "number" },
+                  "block_on_violation": { "type": "boolean" }
+                }
+              },
+
+              "hallucination": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "max_hallucination_rate": { "type": "number" },
+                  "sample_size_per_evaluation": { "type": "integer" },
+                  "action_on_violation": { "type": "string" }
+                }
+              },
+
+              "cost": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "monthly_budget_usd": { "type": "number" },
+                  "alert_thresholds_pct": {
+                    "type": "array",
+                    "items": { "type": "number" }
+                  },
+                  "block_above_pct": { "type": "number" }
+                }
+              },
+
+              "logging": {
+                "type": "object",
+                "properties": {
+                  "audit_log_retention_days": { "type": "integer" },
+                  "pii_handling": {
+                    "type": "string",
+                    "enum": ["raw", "pseudonymised", "anonymised"]
+                  },
+                  "include_prompt_bodies": { "type": "boolean" },
+                  "include_model_outputs": { "type": "boolean" }
+                }
+              },
+
+              "approvals": {
+                "type": "object",
+                "properties": {
+                  "high_risk_use_cases_require_manual_approval": { "type": "boolean" },
+                  "approver_roles": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["model_id", "policies"]
+      }
+    }
+  },
+
+  "required": ["metadata", "models"]
+}
